@@ -6,7 +6,7 @@ function sortByName(inputArray) {
       //сортируем названия по возрастанию
       return -1;
     if (nameA > nameB) return 1;
-    return 0; // нет сортировки
+    return 0; // сортировка не производится
   });
   return inputArray;
 }
