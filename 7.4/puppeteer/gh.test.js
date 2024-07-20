@@ -1,13 +1,17 @@
 let page;
+beforeEach(async () => {
+  page = await browser.newPage();
+});
+
+afterEach(() => {
+  page.close();
+});
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
   });
 
-  afterEach(() => {
-    page.close();
-  });
+  
   test("The h1 header content'", async () => {
     await page.waitForTimeout(4000);
     const firstLink = await page.$("header div div a");
@@ -36,23 +40,21 @@ describe("Github page tests", () => {
 });
 
 test("Проверка гланого заголовка для https://github.com'", async () => {
-  page = await browser.newPage();
+
   await page.goto("https://github.com");
   const title = await page.title();
   expect(title).toEqual("GitHub: Let’s build from here · GitHub");
-  await page.close();
 });
 test("Проверка гланого заголовка для https://github.com/sponsors'", async () => {
-  page = await browser.newPage();
+ 
   await page.goto("https://github.com/sponsors");
   const title = await page.title();
   expect(title).toEqual("GitHub Sponsors · GitHub");
-  await page.close();
+
 });
 test("Проверка гланого заголовка для https://github.com/pricing'", async () => {
-  page = await browser.newPage();
+  
   await page.goto("https://github.com/pricing");
   const title = await page.title();
   expect(title).toEqual("Pricing · Plans for every developer · GitHub");
-  await page.close();
 });
